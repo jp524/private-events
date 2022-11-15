@@ -6,6 +6,8 @@
   <%= link_to_unless_current "Register", new_user_registration_path %>
 <% end %>
 
+<%= link_to "Create an event", new_event_path %>
+
 <h1>Events</h1>
 <% @events.each do |event| %>
   <li><%= link_to event.name, event_path(event) %></li>
