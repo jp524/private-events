@@ -10,7 +10,7 @@
         <li>None yet!</li>
       <% else %>
         <% @event.attendees.each do |attendee| %>
-          <li><%= attendee.name %></li>
+          <li><%= link_to attendee.name, user_path(attendee.id) %></li>
         <% end %>
       <% end %>
     </ul>
