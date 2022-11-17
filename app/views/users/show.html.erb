@@ -1,11 +1,17 @@
 <h1>Events Created by <%= @user.name%></h1>
 
 <% @user.created_events.each do |event| %>
-  <li><%= link_to event.name, event_path %></li>
+  <li><%= link_to event.name, event_path(event) %></li>
 <% end %>
 
 <h1>Events Attended by <%= @user.name%></h1>
 
-<% @user.attended_events.each do |event| %>
-  <li><%= link_to event.name, event_path %></li>
+<h3>Past Events</h3>
+<% @user.attended_events.where(date: (..Time.now)).each do |event| %>
+  <li><%= link_to event.name, event_path(event) %></li>
+<% end %>
+
+<h3>Future Events</h3>
+<% @user.attended_events.where(date: (Time.now..)).each do |event| %>
+  <li><%= link_to event.name, event_path(event) %></li>
 <% end %>
