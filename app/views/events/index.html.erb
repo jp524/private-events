@@ -9,6 +9,12 @@
 <%= link_to "Create an event", new_event_path %>
 
 <h1>Events</h1>
-<% @events.each do |event| %>
+<h3>Future Events</h3>
+<% @events.future.each do |event| %>
+  <li><%= link_to event.name, event_path(event) %></li>
+<% end %>
+
+<h3>Past Events</h3>
+<% @events.past.each do |event| %>
   <li><%= link_to event.name, event_path(event) %></li>
 <% end %>
