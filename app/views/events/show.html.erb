@@ -1,10 +1,10 @@
-<h1>Event: <%= @event.name %></h1>
+<div class="events-show">
+  <h1>Event: <%= @event.name %></h1>
 
-<ul>
-  <li>Creator: <%= link_to  @event.creator.name, @event.creator %></li>
-  <li>Date: <%= @event.date %></li>
-  <li>Location: <%= @event.location %></li>
-  <li>Attendees:
+  <div class="info">Creator: <%= link_to  @event.creator.name, @event.creator %></div>
+  <div class="info">Date: <%= @event.date %></div>
+  <div class="info">Location: <%= @event.location %></div>
+  <div class="info">Attendees:
     <ul>
       <% if @event.attendees.empty? %>
         <li>None yet!</li>
@@ -14,9 +14,9 @@
         <% end %>
       <% end %>
     </ul>
-  </li>
+  </div>
 
   <% if user_signed_in? && current_user != @event.creator && !current_user.attended_event_ids.include?(@event.id) %>
     <%= button_to "Attend this event", event_attendances_path(event_attendance: { event_id: @event.id, attendee_id: current_user.id}) %>
   <% end %>
-</ul>
+</div>
