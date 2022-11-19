@@ -6,6 +6,14 @@ class Event < ApplicationRecord
   scope :past, -> { where(date: (..Time.now)) }
   scope :future, -> { where(date: (Time.now..)) }
 
+  validates :name, presence: true
+  validate :event_cannot_be_in_the_past
+  validates :location, presence: true
+
+  def event_cannot_be_in_the_past
+    errors.add(:date, "can't be in the past") if date <= Time.now
+  end
+
   # def self.past
   #   Event.where(date: (..Time.now))
   # end
