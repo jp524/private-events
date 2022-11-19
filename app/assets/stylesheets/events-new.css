@@ -1,0 +1,26 @@
+.events-new h1 {
+  margin-bottom: 10px;
+}
+
+.events-new form {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff1f2;
+  padding: 20px;
+  border: solid 1px lightgrey;
+  border-radius: 8px;
+  box-shadow: 0 3px 3px lightgrey;
+  margin: 20px 0;
+}
+
+.events-new input[type="text"] {
+  margin-bottom: 14px;
+}
+
+.events-new .date {
+  margin-bottom: 14px;
+
+}
+.events-new .error-msg {
+  color: #e11d48;
+}

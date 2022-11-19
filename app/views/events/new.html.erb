@@ -1,21 +1,23 @@
-<h1>Create a New Event</h1>
-<p>You are signed in as '<%= current_user.name %>'.</p>
-
-<%= form_with model: @event do |form| %>
-  <%= form.label :name, "Event Name:" %>
-  <%= form.text_field :name %>
-
-  <%= form.label :date, "Event Date:" %>
-  <%= form.datetime_select :date %>
-
-  <%= form.label :location, "Event Location:" %>
-  <%= form.text_field :location %>
-
-  <%= form.submit "Submit"%>
-<% end %>
-
-<% if @event.errors.any? %>
-  <% @event.errors.full_messages.each do |message| %>
-    <li class="error-msg"><%= message %></li>
+<div class="events-new">
+  <h1>Create a New Event</h1>
+  <p>You are signed in as '<%= current_user.name %>'.</p>
+  
+  <%= form_with model: @event do |form| %>
+    <%= form.label :name, "Event Name:" %>
+    <%= form.text_field :name %>
+  
+    <%= form.label :date, "Event Date:" %>
+    <div class="date"><%= form.datetime_select :date %> UTC</div>
+  
+    <%= form.label :location, "Event Location:" %>
+    <%= form.text_field :location %>
+  
+    <%= form.submit "Submit"%>
   <% end %>
-<% end %>
+  
+  <% if @event.errors.any? %>
+    <% @event.errors.full_messages.each do |message| %>
+      <div class="error-msg"><%= message %></div>
+    <% end %>
+  <% end %>
+</div>
