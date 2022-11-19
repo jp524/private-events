@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PrivateEvents</title>
+    <title>Odin Private Events</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'application',
+      'https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap',
+      media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <div class="header">
       <div class="left">
-        <%= link_to "Odin Private Events", root_path %>
+        <div class="root"><%= link_to "Odin Private Events", root_path %></div>
         <%= link_to "Create an event", new_event_path %>
       </div>
       <div class="right">
@@ -21,19 +24,20 @@
           <%= link_to "Profile", edit_user_registration_path %>
           <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
         <% else %>
-          <%= link_to_unless_current "Log in", new_user_session_path %>
-          <%= link_to_unless_current "Register", new_user_registration_path %>
+          <%= link_to_unless_current "Sign in", new_user_session_path %>
+          <%= link_to_unless_current "Sign up", new_user_registration_path %>
         <% end %>
       </div>
     </div>
 
-    <div class="flash">
-      <% flash.each do |type, message| %>
-        <div><%= message %></div>
-      <% end %>
+    <div class="body">
+      <div class="flash">
+        <% flash.each do |type, message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
+      <%= yield %>
     </div>
-
-    <%= yield %>
 
     <div class="footer">
       <p>Copyright © <a href="https://github.com/jp524">JP</a> 2022</p>
