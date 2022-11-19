@@ -1,0 +1,15 @@
+.users-show h1 {
+  margin-bottom: 10px;
+}
+
+.users-show h3 {
+  margin-top: 10px;
+}
+
+.users-show .info {
+  margin-bottom: 6px;
+}
+
+.users-show ul {
+  padding-left: 26px;
+}

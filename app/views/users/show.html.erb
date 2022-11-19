@@ -1,17 +1,34 @@
-<h1>Events Created by <%= @user.name%></h1>
+<div class="users-show">
+  <h1>Events Created by <%= @user.name%></h1>
+  <ul>
+    <% if @user.created_events.empty? %>
+        <li>None yet!</li>
+    <% else %>
+      <% @user.created_events.each do |event| %>
+        <li><%= link_to event.name, event_path(event) %></li>
+      <% end %>
+    <% end %>
+  </ul>
 
-<% @user.created_events.each do |event| %>
-  <li><%= link_to event.name, event_path(event) %></li>
-<% end %>
-
-<h1>Events Attended by <%= @user.name%></h1>
-
-<h3>Past Events</h3>
-<% @user.attended_events.where(date: (..Time.now)).each do |event| %>
-  <li><%= link_to event.name, event_path(event) %></li>
-<% end %>
-
-<h3>Future Events</h3>
-<% @user.attended_events.where(date: (Time.now..)).each do |event| %>
-  <li><%= link_to event.name, event_path(event) %></li>
-<% end %>
+  <h1>Events Attended by <%= @user.name%></h1>
+  <h3>Past Events</h3>
+  <ul>
+    <% if @user.attended_events.where(date: (..Time.now)).empty? %>
+        <li>None yet!</li>
+    <% else %>
+      <% @user.attended_events.where(date: (..Time.now)).each do |event| %>
+        <li><%= link_to event.name, event_path(event) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <h3>Future Events</h3>
+  <ul>
+    <% if @user.attended_events.where(date: (Time.now..)).empty? %>
+        <li>None yet!</li>
+    <% else %>
+      <% @user.attended_events.where(date: (Time.now..)).each do |event| %>
+        <li><%= link_to event.name, event_path(event) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
